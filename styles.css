@@ -21,4 +21,16 @@ body {
 #gameboard .square {
   background-color: white;
   border-radius: 5px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+#gameboard .square.x {
+  background-image: url("X.svg");
+}
+
+
+#gameboard .square.o {
+  background-image: url("O.svg");
 }
