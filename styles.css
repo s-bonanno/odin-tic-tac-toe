@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300..700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -7,15 +13,49 @@ body {
   height: 100vh;
 }
 
+.controls {
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  height: 60px;
+  align-items: center;
+  width: 500px;
+  gap: 10px;
+}
+
+.controls .button {
+  font-family: 'Rubik', sans-serif;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgb(237, 237, 209);
+  display: flex;
+  height: 60px;
+  align-items: center;
+}
+
+#display {
+  flex: auto;
+}
+
+#reset {
+  color: rgb(123, 123, 105);
+  text-decoration: underline;
+}
+
+#reset:hover {
+  color: rgb(62, 62, 47);
+}
+
 #gameboard {
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
   gap: 10px;
-  height: 600px;
-  width: 600px;
+  height: 500px;
+  width: 500px;
   background-color: burlywood;
   border-radius: 10px;
   padding: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 10%);
 }
 
 #gameboard .square {
@@ -26,11 +66,21 @@ body {
   background-size: 80%;
 }
 
+
 #gameboard .square.x {
   background-image: url("X.svg");
 }
 
-
 #gameboard .square.o {
   background-image: url("O.svg");
+}
+
+#gameboard .square.win {
+  background-color: rgb(189, 235, 213);
+  transition: all 1s;
+}
+
+#gameboard .square.draw {
+  background-color: rgb(227, 227, 227);
+  transition: all 1s;
 }
