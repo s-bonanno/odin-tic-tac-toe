@@ -31,6 +31,7 @@ body {
   display: flex;
   height: 60px;
   align-items: center;
+  transition: all 0.3s;
 }
 
 #display {
@@ -38,12 +39,12 @@ body {
 }
 
 #reset {
-  color: rgb(123, 123, 105);
-  text-decoration: underline;
+  color: rgb(109, 109, 82);
 }
 
 #reset:hover {
-  color: rgb(62, 62, 47);
+  background-color: rgb(228, 228, 196);
+  transition: all 0.3s;
 }
 
 #gameboard {
@@ -66,12 +67,20 @@ body {
   background-size: 80%;
 }
 
-
 #gameboard .square.x {
   background-image: url("X.svg");
 }
 
+#gameboard .square.xhover:hover {
+  background-image: url("X.svg");
+}
+
+
 #gameboard .square.o {
+  background-image: url("O.svg");
+}
+
+#gameboard .square.ohover:hover {
   background-image: url("O.svg");
 }
 
@@ -81,6 +90,6 @@ body {
 }
 
 #gameboard .square.draw {
-  background-color: rgb(227, 227, 227);
+  background-color: rgb(246, 246, 239);
   transition: all 1s;
 }
