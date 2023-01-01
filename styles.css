@@ -25,7 +25,7 @@ body {
 
 .controls .button {
   font-family: 'Rubik', sans-serif;
-  padding: 20px;
+  padding: 25px;
   border-radius: 10px;
   background-color: rgb(237, 237, 209);
   display: flex;
@@ -65,23 +65,25 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 80%;
+  transition: all 0.5s;
 }
 
 #gameboard .square.x {
   background-image: url("X.svg");
 }
 
-#gameboard .square.xhover:hover {
-  background-image: url("X.svg");
+#gameboard .square.xhover:hover,
+#gameboard .square.x.draw  {
+  background-image: url("X-light.svg");
 }
-
 
 #gameboard .square.o {
   background-image: url("O.svg");
 }
 
-#gameboard .square.ohover:hover {
-  background-image: url("O.svg");
+#gameboard .square.ohover:hover,
+#gameboard .square.o.draw {
+  background-image: url("O-light.svg");
 }
 
 #gameboard .square.win {
@@ -90,6 +92,7 @@ body {
 }
 
 #gameboard .square.draw {
-  background-color: rgb(246, 246, 239);
+  background-color: rgb(250, 250, 250);
   transition: all 1s;
 }
+
