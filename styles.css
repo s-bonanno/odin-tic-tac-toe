@@ -78,21 +78,21 @@ div#preload {
 }
 
 #gameboard .square.x {
-  background-image: url("X.svg");
+  background-image: url("img/X.svg");
 }
 
 #gameboard .square.xhover:hover,
 #gameboard .square.x.draw {
-  background-image: url("X-light.svg");
+  background-image: url("img/X-light.svg");
 }
 
 #gameboard .square.o {
-  background-image: url("O.svg");
+  background-image: url("img/O.svg");
 }
 
 #gameboard .square.ohover:hover,
 #gameboard .square.o.draw {
-  background-image: url("O-light.svg");
+  background-image: url("img/O-light.svg");
 }
 
 #gameboard .square.win {
