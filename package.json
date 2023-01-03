@@ -1,5 +1,27 @@
 {
   "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
     "prettier": "2.7.1"
-  }
+  },
+  "name": "odin-tic-tac-toe",
+  "description": "Tic tac toe game for the Odin project. The goal is to try using factory functions and avoid having globally accessible variables.",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mr-Robot-83/odin-tic-tac-toe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mr-Robot-83/odin-tic-tac-toe/issues"
+  },
+  "homepage": "https://github.com/Mr-Robot-83/odin-tic-tac-toe#readme"
 }
