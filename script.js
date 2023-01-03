@@ -92,17 +92,17 @@ const game = (() => {
     console.log("running");
     switch (status) {
       case "win":
-        gameboard.displayBlock.textContent = `Player ${activePlayer.symbol} wins 👏👏👏`;
+        gameboard.displayBlock.innerHTML = `Player ${activePlayer.symbol} wins <span>👏👏👏</span>`;
         break;
       case "draw":
         console.log("draw status");
-        gameboard.displayBlock.textContent = `It's a draw 🤷‍♀️`;
+        gameboard.displayBlock.innerHTML = `It's a draw <span>🤷‍♀️</span>`;
         break;
       case "next":
-        gameboard.displayBlock.textContent = `Player ${activePlayer.symbol}'s turn`;
+        gameboard.displayBlock.innerHTML = `Player ${activePlayer.symbol}'s turn`;
         break;
       case "reset":
-        gameboard.displayBlock.textContent = "Player X to start 🏁";
+        gameboard.displayBlock.innerHTML = `Player X to start <span>🏁</span>`;
         break;
     }
   }

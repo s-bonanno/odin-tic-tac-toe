@@ -26,9 +26,15 @@ div#preload {
   gap: 10px;
 }
 
+.controls span{
+  font-size: 25px;
+  margin-left: 10px;
+}
+
 .controls .button {
   font-family: "Rubik", sans-serif;
-  padding: 20px;
+  padding: 0px 20px;
+  height: 55px;
   border-radius: 10px;
   background-color: rgb(237, 237, 209);
   display: flex;
