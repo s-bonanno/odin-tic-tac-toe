@@ -93,7 +93,6 @@ const game = (() => {
   function playComputerMove() {
     if (gameboard.getMove() === 9) return;
     if (activePlayer.type === "Computer") {
-      console.log(`Active player is ${activePlayer.playerName}`);
 
       //choose a random number between 0 and 8
       const position = Math.floor(Math.random() * 8);
@@ -103,7 +102,6 @@ const game = (() => {
       ) {
         playComputerMove();
       } else {
-        console.log(`Position ${position} is free`);
         gameboard.increaseMove();
         gameboard.getGameboardArray().push({
           player: activePlayer.playerName,
@@ -129,13 +127,11 @@ const game = (() => {
   }
 
   function showGameStatus(status) {
-    console.log("running");
     switch (status) {
       case "win":
         gameboard.displayBlock.innerHTML = `Player ${activePlayer.symbol} wins <span>👏👏👏</span>`;
         break;
       case "draw":
-        console.log("draw status");
         gameboard.displayBlock.innerHTML = `It's a draw <span>🤷‍♀️</span>`;
         break;
       case "next":
@@ -184,7 +180,6 @@ const gameboard = (() => {
 
   //remove event listener on each square
   function makeSquaresUnclickable() {
-    console.log("unclickable");
     gameSquare.forEach((item) => {
       item.removeEventListener("click", markSquare);
     });
@@ -192,13 +187,11 @@ const gameboard = (() => {
 
   //add event listener to each square to show a symbol on hover
   function addHoverSymbol() {
-    console.log("add hovers");
     gameSquare.forEach((item) => setHover(item));
   }
   addHoverSymbol();
 
   function removeHoverSymbol() {
-    console.log("remove hovers");
     gameSquare.forEach((item) => {
       item.classList.remove("xhover");
       item.classList.remove("ohover");
@@ -277,7 +270,6 @@ const gameboard = (() => {
     drawGameboard();
     makeSquaresClickable();
     game.restartGame();
-    console.log("clearGameboard");
   }
 
   return {
