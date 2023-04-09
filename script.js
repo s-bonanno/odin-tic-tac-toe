@@ -1,15 +1,26 @@
 //player factory
-const player = (playerName, symbol) => {
-  return { playerName, symbol };
+const player = (playerName, symbol, type) => {
+  return { playerName, symbol, type };
 };
 
 const game = (() => {
   //setup players
-  const playerOne = player("Player 1", "X");
-  const playerTwo = player("Player 2", "O");
+  const playerOne = player("Player 1", "X", "Human");
+  const playerTwo = player("Player 2", "O", "Human");
 
   //set active player
   let activePlayer = playerOne;
+
+  function setPlayerTwo() {
+    if (gameboard.getMove() != 0){return};
+    if (gameboard.playerSelect.textContent === "🧑 vs 🧑") {
+      gameboard.playerSelect.textContent = "🧑 vs 🤖 (Easy)";
+      playerTwo.type = "Computer";
+    } else {
+      gameboard.playerSelect.textContent = "🧑 vs 🧑";
+      playerTwo.type = "Human";
+    }
+  }
 
   const getActivePlayer = () => activePlayer;
 
@@ -22,6 +33,7 @@ const game = (() => {
     showGameStatus("reset");
     gameboard.resetMoves();
     gameboard.addHoverSymbol();
+    gameboard.playerSelect.classList.remove("disabled");
   }
 
   function checkWinner() {
@@ -68,6 +80,7 @@ const game = (() => {
       swapPlayers();
       showGameStatus("next");
       gameboard.addHoverSymbol();
+      playComputerMove();
     }
 
     //If there is no winner, check if all moves have been made. If so, declare a draw.
@@ -77,13 +90,40 @@ const game = (() => {
     }
   }
 
+  function playComputerMove() {
+    if (gameboard.getMove() === 9) return;
+    if (activePlayer.type === "Computer") {
+      console.log(`Active player is ${activePlayer.playerName}`);
+
+      //choose a random number between 0 and 8
+      const position = Math.floor(Math.random() * 8);
+
+      if (
+        gameboard.getGameboardArray().some((item) => item.position === position)
+      ) {
+        playComputerMove();
+      } else {
+        console.log(`Position ${position} is free`);
+        gameboard.increaseMove();
+        gameboard.getGameboardArray().push({
+          player: activePlayer.playerName,
+          type: activePlayer.type,
+          symbol: activePlayer.symbol,
+          position: position,
+          moveNumber: gameboard.getMove(),
+        });
+        gameboard.drawGameboard();
+        checkWinner();
+      }
+    }
+  }
+
   function drawGame() {
     gameboard.resetMoves();
     gameboard.colourSquares("draw", [0, 1, 2, 3, 4, 5, 6, 7, 8]);
   }
 
   function gameOver(result) {
-    console.log(`${activePlayer.symbol} wins. Winning squares ${result}`);
     gameboard.makeSquaresUnclickable();
     return result;
   }
@@ -113,6 +153,7 @@ const game = (() => {
     checkWinner,
     showGameStatus,
     gameOver,
+    setPlayerTwo,
   };
 })();
 
@@ -120,6 +161,9 @@ const game = (() => {
 const gameboard = (() => {
   let gameboardArray = [];
   const getGameboardArray = () => gameboardArray;
+
+  const playerSelect = document.querySelector("#playerSelect");
+  playerSelect.addEventListener("click", game.setPlayerTwo);
 
   //game controls
   const resetButton = document.querySelector("#reset");
@@ -178,17 +222,20 @@ const gameboard = (() => {
 
   let move = 0;
   const getMove = () => move;
+  const increaseMove = () => move++;
   const resetMoves = () => (move = 0);
 
   //update array on click
   function markSquare(e) {
+    if (move === 0){ playerSelect.classList.add("disabled")};
     move++;
     const activePlayer = game.getActivePlayer();
     const arrayIndex = e.target.getAttribute("data-array-index");
     gameboardArray.push({
       player: activePlayer.playerName,
+      type: activePlayer.type,
       symbol: activePlayer.symbol,
-      position: arrayIndex,
+      position: parseInt(arrayIndex),
       moveNumber: move,
     });
     e.target.removeEventListener("click", markSquare);
@@ -242,5 +289,8 @@ const gameboard = (() => {
     addHoverSymbol,
     removeHoverSymbol,
     displayBlock,
+    playerSelect,
+    drawGameboard,
+    increaseMove,
   };
 })();

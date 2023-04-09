@@ -1,7 +1,2 @@
 node_modules/
-.vscode
 .DS_Store
-.eslintrc.json
-.prettierrc.json
-package-lock.json
-package.json

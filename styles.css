@@ -26,7 +26,7 @@ div#preload {
   gap: 10px;
 }
 
-.controls span{
+.controls span {
   font-size: 25px;
   margin-left: 10px;
 }
@@ -40,19 +40,36 @@ div#preload {
   display: flex;
   align-items: center;
   transition: all 0.3s;
+  border: 1px solid rgb(218, 218, 189);
 }
 
 #display {
   flex: auto;
+  justify-content: center;
+  cursor: default;
 }
 
-#reset {
-  color: rgb(109, 109, 82);
+#playerSelect {
+  min-width: 150px;
+  justify-content: center;
+}
+
+#reset,
+#playerSelect {
+  background-color: rgb(248, 248, 238);
+  color: rgb(125, 125, 61);
   cursor: pointer;
 }
 
-#reset:hover {
-  background-color: rgb(228, 228, 196);
+#playerSelect.disabled {
+  background-color: rgb(237, 237, 209);
+  transition: all 0.3s;
+  cursor: default;
+}
+
+#reset:hover,
+#playerSelect:hover:not(.disabled) {
+  background-color: rgb(226, 244, 238);
   transition: all 0.3s;
 }
 
