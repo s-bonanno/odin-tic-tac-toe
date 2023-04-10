@@ -46,7 +46,6 @@ div#preload {
 #display {
   flex: auto;
   justify-content: center;
-  cursor: default;
 }
 
 #playerSelect {
