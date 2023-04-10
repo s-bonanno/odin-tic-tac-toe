@@ -12,7 +12,9 @@ const game = (() => {
   let activePlayer = playerOne;
 
   function setPlayerTwo() {
-    if (gameboard.getMove() != 0){return};
+    if (gameboard.getMove() != 0) {
+      return;
+    }
     if (gameboard.playerSelect.textContent === "🧑 vs 🧑") {
       gameboard.playerSelect.textContent = "🧑 vs 🤖 (Easy)";
       playerTwo.type = "Computer";
@@ -69,7 +71,6 @@ const game = (() => {
         playerWins = true;
         gameOver(winningCombo);
         gameboard.removeHoverSymbol();
-        gameboard.resetMoves();
         gameboard.colourSquares("win", winningCombo);
 
         showGameStatus("win");
@@ -90,10 +91,10 @@ const game = (() => {
     }
   }
 
+  // simple function to all PC to make any valid move
   function playComputerMove() {
     if (gameboard.getMove() === 9) return;
     if (activePlayer.type === "Computer") {
-
       //choose a random number between 0 and 8
       const position = Math.floor(Math.random() * 8);
 
@@ -111,13 +112,25 @@ const game = (() => {
           moveNumber: gameboard.getMove(),
         });
         gameboard.drawGameboard();
+        deactivateCompSquare();
         checkWinner();
       }
     }
   }
 
+  // this function detects the PC player's last move and deactivates the square
+  function deactivateCompSquare() {
+    const compSquare = document.querySelector(
+      '[data-array-index="' +
+        gameboard.getGameboardArray()[gameboard.getGameboardArray().length - 1]
+          .position +
+        '"]'
+    );
+    compSquare.removeEventListener("click", gameboard.markSquare);
+  }
+
   function drawGame() {
-    gameboard.resetMoves();
+    gameboard.makeSquaresUnclickable();
     gameboard.colourSquares("draw", [0, 1, 2, 3, 4, 5, 6, 7, 8]);
   }
 
@@ -220,7 +233,9 @@ const gameboard = (() => {
 
   //update array on click
   function markSquare(e) {
-    if (move === 0){ playerSelect.classList.add("disabled")};
+    if (move === 0) {
+      playerSelect.classList.add("disabled");
+    }
     move++;
     const activePlayer = game.getActivePlayer();
     const arrayIndex = e.target.getAttribute("data-array-index");
@@ -270,6 +285,7 @@ const gameboard = (() => {
     drawGameboard();
     makeSquaresClickable();
     game.restartGame();
+    resetMoves();
   }
 
   return {
@@ -284,5 +300,6 @@ const gameboard = (() => {
     playerSelect,
     drawGameboard,
     increaseMove,
+    markSquare,
   };
 })();
